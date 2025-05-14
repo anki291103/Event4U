@@ -1,0 +1,40 @@
+﻿@model List<Event4U.Models.User>
+
+@{
+    ViewBag.Title = "Manage Users";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<a href="@Url.Action("Index", "Admin")" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+
+<h2 class="mb-4">Manage Users</h2>
+<a href="@Url.Action("AddUser", "Admin")" class="btn btn-success mb-3">➕ Add New User</a>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.UserId</td>
+                <td>@user.FullName</td>
+                <td>@user.Email</td>
+                <td>
+                    <a href="@Url.Action("EditUser", "Admin", new { id = user.UserId })" class="btn btn-warning btn-sm">✏️ Edit</a>
+                    <a href="@Url.Action("DeleteUser", "Admin", new { id = user.UserId })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">🗑️ Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

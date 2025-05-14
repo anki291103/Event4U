@@ -1,0 +1,45 @@
+﻿@model List<Event4U.Models.Payment>
+@{
+    ViewBag.Title = "Manage Payments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">💳 Payment Transactions</h2>
+<a href="@Url.Action("Index", "Admin")" class="btn btn-secondary mb-3">Back to Dashboard</a>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Payment ID</th>
+                <th>Booking ID</th>
+                <th>People</th>
+                <th>Total Amount</th>
+                <th>Paid At</th>
+                <th>Invoice</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.PaymentId</td>
+                    <td>@p.BookingId</td>
+                    <td>@p.PeopleCount</td>
+                    <td>₹@p.TotalAmount</td>
+                    <td>@p.PaidAt.ToString("dd-MMM-yyyy hh:mm tt")</td>
+                    <td>
+                        <a href="@Url.Action("DownloadInvoice", "Admin", new { id = p.PaymentId })" class="btn btn-sm btn-outline-primary">
+                            Download PDF
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-info">No payments found.</div>
+}

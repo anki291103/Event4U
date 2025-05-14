@@ -1,0 +1,75 @@
+﻿@model Event4U.Models.ViewModel.AdminDashboardViewModel
+@using System.Linq
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2 class="text-center mb-5 fw-bold text-gradient">✨ Admin Dashboard ✨</h2>
+
+<div class="container">
+    <div class="row g-4 justify-content-center">
+
+        <!-- Total Bookings -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 h-100" style="background: linear-gradient(135deg, #6a11cb, #2575fc); color: white;">
+                <div class="card-body text-center rounded-4">
+                    <i class="bi bi-journal-check display-4 mb-2"></i>
+                    <h5 class="card-title">Total Bookings</h5>
+                    <p class="display-6 fw-bold">@Model.TotalBookings</p>
+                    <a href="@Url.Action("Bookings", "Admin")" class="btn btn-outline-light btn-sm mt-2">Manage</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Registered Users -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 h-100" style="background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white;">
+                <div class="card-body text-center rounded-4">
+                    <i class="bi bi-people-fill display-4 mb-2"></i>
+                    <h5 class="card-title">Registered Users</h5>
+                    <p class="display-6 fw-bold">@Model.TotalUsers</p>
+                    <a href="@Url.Action("Users", "Admin")" class="btn btn-outline-light btn-sm mt-2">Manage</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Offers -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 h-100" style="background: linear-gradient(135deg, #f7971e, #ffd200); color: #333;">
+                <div class="card-body text-center rounded-4">
+                    <i class="bi bi-tags-fill display-4 mb-2"></i>
+                    <h5 class="card-title">Offers</h5>
+                    <p class="display-6 fw-bold">@(Model.AllOffers?.Count() ?? 0)</p>
+                    <a href="@Url.Action("AllOffers", "Admin")" class="btn btn-outline-dark btn-sm mt-2">View All</a>
+                </div>
+            </div>
+        </div>
+        <!-- Manage Payments -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 h-100" style="background: linear-gradient(135deg, #fc5c7d, #6a82fb); color: white;">
+                <div class="card-body text-center rounded-4">
+                    <i class="bi bi-credit-card-fill display-4 mb-2"></i>
+                    <h5 class="card-title">Payments</h5>
+                    <a href="@Url.Action("ManagePayments", "Admin")" class="btn btn-outline-light btn-sm mt-2">View</a>
+                </div>
+            </div>
+        </div>
+        <!-- Visualize Stats -->
+        <div class="col-md-3">
+            <div class="card shadow-lg border-0 h-100" style="background: linear-gradient(135deg, #56ab2f, #a8e063); color: white;">
+                <div class="card-body text-center rounded-4">
+                    <i class="bi bi-bar-chart-line-fill display-4 mb-2"></i>
+                    <h5 class="card-title">Visualize Stats</h5>
+                    <a href="@Url.Action("Dashboard", "Admin")" class="btn btn-outline-light btn-sm mt-2">Play with charts</a>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

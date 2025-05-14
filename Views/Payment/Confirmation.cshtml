@@ -1,0 +1,74 @@
+﻿@model Event4U.Models.ViewModel.PaymentConfirmationViewModel
+
+@{
+    ViewData["Title"] = "Confirmation Page";
+}
+
+<style>
+    body {
+        background: #f4f9f4;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .confirmation-container {
+        max-width: 600px;
+        margin: 80px auto;
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .confirmation-container h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .confirmation-container p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .confirmation-container strong {
+            color: #555;
+        }
+
+    .back-home {
+        display: block;
+        text-align: center;
+        margin-top: 30px;
+    }
+
+        .back-home a {
+            background-color: #43a047;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+            .back-home a:hover {
+                background-color: #2e7d32;
+            }
+</style>
+
+<div class="confirmation-container">
+    <h2>Booking & Payment Confirmation</h2>
+
+    <p><strong>Name:</strong> @Model.FullName</p>
+    <p><strong>Event:</strong> @Model.EventName</p>
+    <p><strong>Date:</strong> @Model.EventDate.ToString("yyyy-MM-dd")</p>
+    <p><strong>Number of People:</strong> @Model.PeopleCount</p>
+    <p><strong>Total Amount:</strong> ₹@Model.TotalAmount.ToString("N0")</p>
+
+    <div class="back-home">
+        <a href="/">Back to Home</a>
+    </div>
+</div>

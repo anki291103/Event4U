@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Event4U.Models.Offer>
+
+@{
+    ViewBag.Title = "All Offers";
+}
+<a href="@Url.Action("Index", "Admin")" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+
+<h2>Available Offers</h2>
+
+<p><a href="@Url.Action("AddOffer")" class="btn btn-success">Add New Offer</a></p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Description</th>
+        <th>Created At</th>
+    </tr>
+    @foreach (var offer in Model)
+    {
+        <tr>
+            <td>@offer.Description</td>
+            <td>@offer.CreatedAt.ToString("g")</td>
+        </tr>
+    }
+</table>

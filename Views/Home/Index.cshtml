@@ -1,0 +1,295 @@
+﻿@{
+    ViewData["Title"] = "Home - Event4U";
+}
+
+<style>
+    /* Slider Section */
+    .slider-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+    }
+
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+    /* Event4U Pop-up */
+    .popup-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        color: white;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 15px 25px;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    /* Event Cards Section */
+    .event-section {
+        text-align: center;
+        padding: 50px 0;
+        background: #f5f5f5;
+    }
+
+    .event-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .event-card {
+        width: 250px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative;
+        color: white;
+        overflow: hidden;
+    }
+
+        /* Blurred Background Image for Each Card */
+        .event-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(6px);
+            z-index: -1;
+        }
+
+        .event-card:nth-child(1) {
+            background: url('/Images/wedcard.jpg') no-repeat center/cover;
+        }
+
+        .event-card:nth-child(2) {
+            background: url('/Images/corporatecard.jpg') no-repeat center/cover;
+        }
+
+        .event-card:nth-child(3) {
+            background: url('/Images/concertcard.PNG') no-repeat center/cover;
+        }
+
+        .event-card:nth-child(4) {
+            background: url('/Images/birthdaycard.jpg') no-repeat center/cover;
+        }
+
+        .event-card::before {
+            backdrop-filter: blur(6px);
+        }
+
+        .event-card h3, .event-card p {
+            position: relative;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+    /* Feedback Section */
+    .feedback-section {
+        background: #222;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .feedback-slider {
+        width: 80%;
+        margin: auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .feedback-container {
+        display: flex;
+        width: 500%;
+        transition: transform 1s ease-in-out;
+    }
+
+    .feedback {
+        width: 20%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+        .feedback p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+</style>
+
+<!-- Image Slider Section -->
+<div class="slider-container">
+    <img src="~/Images/EventSlider1.jpg" class="slide" style="opacity: 1;">
+    <img src="~/Images/EventSlider2.jpg" class="slide">
+    <img src="~/Images/EventSlider3.jpg" class="slide">
+    <img src="~/Images/EventSlider4.jpg" class="slide">
+    <img src="~/Images/EventSlider5.jpg" class="slide">
+    <img src="~/Images/EventSlider6.jpg" class="slide">
+    <img src="~/Images/EventSlider7.jpg" class="slide">
+    <img src="~/Images/EventSlider8.jpg" class="slide">
+    <img src="~/Images/EventSlider9.jpg" class="slide">
+    <div class="popup-text">Event4U</div>
+</div>
+@if (ViewBag.Offers != null && ((List<Event4U.Models.Offer>)ViewBag.Offers).Any())
+{
+    <style>
+        .offer-banner {
+            background-color: purple;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 12px 0;
+            font-size: 18px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .scrolling-wrapper {
+            display: flex;
+            animation: scrollOffers 30s linear infinite;
+        }
+
+            .scrolling-wrapper:hover {
+                animation-play-state: paused;
+            }
+
+        .offer-item {
+            display: inline-block;
+            margin-right: 60px;
+            white-space: nowrap;
+        }
+
+        @@keyframes scrollOffers {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+
+    <div class="offer-banner">
+        <div class="scrolling-wrapper">
+            <div>
+                @foreach (var offer in (List<Event4U.Models.Offer>)ViewBag.Offers)
+                {
+                    <span class="offer-item">🎉 @offer.Description 🎁</span>
+                }
+                @foreach (var offer in (List<Event4U.Models.Offer>)ViewBag.Offers)
+                {
+                    <span class="offer-item">🎉 @offer.Description 🎁</span>
+                }
+                @foreach (var offer in (List<Event4U.Models.Offer>)ViewBag.Offers)
+                {
+                    <span class="offer-item">🎉 @offer.Description 🎁</span>
+                }
+                @foreach (var offer in (List<Event4U.Models.Offer>)ViewBag.Offers)
+                {
+                    <span class="offer-item">🎉 @offer.Description 🎁</span>
+                }
+                @foreach (var offer in (List<Event4U.Models.Offer>)ViewBag.Offers)
+                {
+                    <span class="offer-item">🎉 @offer.Description 🎁</span>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<!-- Event Cards Section -->
+<div class="event-section">
+    <h2>Our Event Categories</h2>
+    <div class="event-cards">
+        <div class="event-card">
+            <h3>Weddings</h3>
+            <p>Make your special day memorable.</p>
+        </div>
+        <div class="event-card">
+            <h3>Corporate Events</h3>
+            <p>Professional and engaging business events.</p>
+        </div>
+        <div class="event-card">
+            <h3>Concerts</h3>
+            <p>Live performances with amazing experiences.</p>
+        </div>
+        <div class="event-card">
+            <h3>Birthday Parties</h3>
+            <p>Celebrate in style with customized themes.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Feedback Slider Section -->
+<div class="feedback-section">
+    <h2>What Our Clients Say</h2>
+    <div class="feedback-slider">
+        <div class="feedback-container">
+            <div class="feedback"><p>"Absolutely loved the event management. Everything was seamless!"</p></div>
+            <div class="feedback"><p>"The best experience ever! Highly professional and friendly team."</p></div>
+            <div class="feedback"><p>"Exceeded my expectations. Will definitely book again!"</p></div>
+            <div class="feedback"><p>"Stress-free planning and execution. Worth every penny!"</p></div>
+            <div class="feedback"><p>"Beautiful decorations and perfect coordination. Highly recommended!"</p></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Image Slider
+    let slides = document.querySelectorAll(".slide");
+    let popupText = document.querySelector(".popup-text");
+    let index = 0;
+
+    function showNextSlide() {
+        slides.forEach(slide => slide.style.opacity = 0);
+        slides[index].style.opacity = 1;
+        index = (index + 1) % slides.length;
+    }
+
+    function showPopup() {
+        popupText.style.opacity = 1;
+        setTimeout(() => {
+            popupText.style.opacity = 0;
+        }, 1000);
+    }
+
+    setInterval(showNextSlide, 3000);
+    setInterval(showPopup, 2000);
+
+    // Feedback Slider
+    let feedbackIndex = 0;
+    function slideFeedback() {
+        let feedbackContainer = document.querySelector(".feedback-container");
+        feedbackIndex = (feedbackIndex + 1) % 5;
+        feedbackContainer.style.transform = `translateX(-${feedbackIndex * 20}%)`;
+    }
+
+    setInterval(slideFeedback, 4000);
+</script>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}

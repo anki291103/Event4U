@@ -1,0 +1,148 @@
+﻿@model Event4U.Models.ViewModel.AdminDashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-success mb-4">📊 Event4U Analytics Dashboard</h2>
+<a href="@Url.Action("Index", "Admin")" class="btn btn-secondary mb-3">Back to Dashboard</a>
+
+<!-- Tab-style buttons to toggle charts -->
+<div class="text-center mb-4">
+    <button class="btn btn-outline-primary m-1" onclick="toggleChart('bookingsSection')">📅 Bookings</button>
+    <button class="btn btn-outline-success m-1" onclick="toggleChart('popularEventsSection')">🎉 Popular Events</button>
+    <button class="btn btn-outline-warning m-1" onclick="toggleChart('revenueSection')">💰 Revenue</button>
+</div>
+
+<!-- Container width control using a Bootstrap class + inline style for canvas height -->
+<div class="container">
+
+    <!-- Bookings Per Month -->
+    <div id="bookingsSection" class="card mb-4 shadow" style="max-width: 800px; margin: auto;">
+        <div class="card-header bg-info text-white">📅 Bookings Per Month</div>
+        <div class="card-body">
+            <canvas id="bookingsChart" height="100"></canvas>
+        </div>
+    </div>
+
+    <!-- Popular Events -->
+    <div id="popularEventsSection" class="card mb-4 shadow d-none" style="max-width: 800px; margin: auto;">
+        <div class="card-header bg-teal text-white">🎉 Popular Events by Booking Count</div>
+        <div class="card-body p-3" style="height: 300px;">
+            <canvas id="popularEventsChart" height="40" style="max-height: 200px;"></canvas>
+        </div>
+    </div>
+
+    <!-- Revenue Per Event -->
+    <div id="revenueSection" class="card mb-4 shadow d-none" style="max-width: 800px; margin: auto;">
+        <div class="card-header bg-orange text-white">💰 Event-wise Revenue</div>
+        <div class="card-body">
+            <canvas id="revenueChart" height="80"></canvas>
+        </div>
+    </div>
+
+</div>
+
+</div>
+<style>
+    .bg-teal {
+        background-color: #20c997 !important; /* Light Teal */
+        color: white;
+    }
+
+    .bg-orange {
+        background-color: #fd7e14 !important; /* Soft Orange */
+        color: white;
+    }
+
+    .card-header {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .btn-outline-primary, .btn-outline-success, .btn-outline-warning {
+        border-radius: 20px;
+        font-weight: 500;
+    }
+</style>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        const bookingsData = @Html.Raw(Json.Encode(Model.BookingsPerMonth));
+        const popularEventsData = @Html.Raw(Json.Encode(Model.PopularEvents));
+        const revenueData = @Html.Raw(Json.Encode(Model.RevenuePerEvent));
+
+        // Bookings Per Month
+        new Chart(document.getElementById("bookingsChart"), {
+            type: 'bar',
+            data: {
+                labels: bookingsData.map(x => x.Month),
+                datasets: [{
+                    label: 'Bookings',
+                    data: bookingsData.map(x => x.Count),
+                    backgroundColor: '#4e73df',
+                    borderColor: '#2e59d9',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Popular Events
+        new Chart(document.getElementById("popularEventsChart"), {
+            type: 'doughnut',
+            data: {
+                labels: popularEventsData.map(x => x.EventName),
+                datasets: [{
+                    label: 'Bookings',
+                    data: popularEventsData.map(x => x.Count),
+                    backgroundColor: ['#1cc88a', '#36b9cc', '#f6c23e', '#e74a3b']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'right' }
+                }
+            }
+        });
+
+        // Revenue Per Event
+        new Chart(document.getElementById("revenueChart"), {
+            type: 'line',
+            data: {
+                labels: revenueData.map(x => x.EventName),
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: revenueData.map(x => x.Total),
+                    fill: true,
+                    backgroundColor: 'rgba(54, 185, 204, 0.2)',
+                    borderColor: 'rgba(54, 185, 204, 1)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true }
+                }
+            }
+        });
+
+        // Toggle chart sections
+        function toggleChart(sectionId) {
+            document.getElementById("bookingsSection").classList.add("d-none");
+            document.getElementById("popularEventsSection").classList.add("d-none");
+            document.getElementById("revenueSection").classList.add("d-none");
+
+            document.getElementById(sectionId).classList.remove("d-none");
+        }
+    </script>
+}

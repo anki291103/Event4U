@@ -1,0 +1,115 @@
+﻿
+@model Event4U.Models.ViewModel.PaymentViewModel
+
+@{
+    ViewData["Title"] = "Make Payment";
+}
+
+<style>
+    .payment-container {
+        max-width: 600px;
+        margin: 80px auto;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .people-count {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+        .people-count button {
+            padding: 5px 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .people-count span {
+            font-size: 1.2rem;
+        }
+
+    .summary {
+        margin-bottom: 20px;
+    }
+
+    .pay-btn {
+        background: #28a745;
+        color: white;
+        padding: 12px 20px;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+        .pay-btn:hover {
+            background: #218838;
+        }
+</style>
+
+<div class="payment-container">
+    <h2>Payment Details</h2>
+
+    <div class="summary">
+        <p><strong>Name:</strong> @Model.FullName</p>
+        <p><strong>Event:</strong> @Model.EventName</p>
+        <p><strong>Date:</strong> @Model.EventDate.ToString("yyyy-MM-dd")</p>
+    </div>
+
+    @using (Html.BeginForm("Payment", "Payment", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.BookingId)
+        @Html.HiddenFor(m => m.FullName)
+        @Html.HiddenFor(m => m.EventName)
+        @Html.HiddenFor(m => m.EventDate)
+
+        <div class="form-group people-count">
+            <label><strong>Number of People:</strong></label>
+            <button type="button" onclick="decrease()">-</button>
+            <input type="number" id="peopleCount" value="1" min="1" onchange="syncCount()" />
+            <button type="button" onclick="increase()">+</button>
+            <input type="hidden" name="PeopleCount" id="PeopleCount" value="1" />
+        </div>
+
+
+        <button type="submit" class="pay-btn">Proceed to Confirmation</button>
+    }
+
+</div>
+
+<script>
+    let count = 1;
+
+    function increase() {
+        count++;
+        updateDisplay();
+    }
+
+    function decrease() {
+        if (count > 1) {
+            count--;
+            updateDisplay();
+        }
+    }
+
+    function syncCount() {
+        const input = document.getElementById("peopleCount");
+        count = parseInt(input.value);
+        if (isNaN(count) || count < 1) count = 1;
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        document.getElementById("peopleCount").value = count;
+        document.getElementById("PeopleCount").value = count;
+    }
+</script>

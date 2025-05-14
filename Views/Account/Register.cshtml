@@ -1,0 +1,87 @@
+﻿@model Event4U.Models.User
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<style>
+    /* Full-page background with blur effect */
+    body {
+        background: url('/Images/register.jpg') no-repeat center center fixed;
+        background-size: cover;
+        backdrop-filter: blur(8px);
+    }
+
+    /* Center the register form while keeping the navbar at the top */
+    .register-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 80px); /* Adjust height so it doesn't overlap the navbar */
+    }
+
+    /* Register Card Styling */
+    .register-card {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        width: 350px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+        .register-card .form-control {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .register-card .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .register-card label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+</style>
+
+<!-- Centered Register Form -->
+<div class="register-container">
+    <div class="register-card">
+        <h2>Register</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="form-group text-center">
+            <input type="submit" value="Register" class="btn btn-primary w-100" />
+        </div>
+
+    </div>
+ 
+        }
+    </div>
+</div>

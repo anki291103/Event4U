@@ -1,0 +1,49 @@
+﻿@model List<Event4U.Models.Booking>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Upcoming Events";
+}
+
+<h2 class="mb-4 text-center">Upcoming Events</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var b in Model)
+        {
+            var imageFile = b.EventName.ToLower().Replace(" ", "") + ".jpg"; // e.g., wedding.jpg
+            var imagePath = Url.Content("~/Content/event-images/" + imageFile); // Folder path
+
+            <div class="col">
+                <div class="card shadow border-0 h-100 text-white transition-all"
+                     style="background-image: url('@imagePath');
+                            background-size: cover;
+                            background-position: center;
+                            min-height: 400px;
+                            display: flex;
+                            align-items: flex-end;
+                            border-radius: 1rem;
+                            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+                            transition: transform 0.3s;"
+                     onmouseover="this.style.transform='scale(1.02)'"
+                     onmouseout="this.style.transform='scale(1)'">
+
+                    <div class="card-body bg-dark bg-opacity-50 rounded-bottom p-4">
+                        <h5 class="card-title fw-bold">@b.EventName</h5>
+                        <p class="card-text mb-0">
+                            <i class="bi bi-calendar-event-fill me-2"></i>
+                            @b.EventDate.ToString("dddd, dd MMMM yyyy")
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info text-center mt-5">
+        <strong>No upcoming events</strong> scheduled for the next 2 weeks.
+    </div>
+}

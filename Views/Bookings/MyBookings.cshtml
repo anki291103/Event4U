@@ -1,0 +1,107 @@
+﻿@model IEnumerable<Event4U.Models.Booking>
+
+@{
+    ViewBag.Title = "My Bookings";
+
+    // Redirect if not logged in
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+}
+
+<style>
+    body {
+        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-heading {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        color: #007bff;
+        margin: 40px 0 20px;
+    }
+
+    .bookings-wrapper {
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto 50px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .no-bookings {
+        text-align: center;
+        font-size: 18px;
+        color: #555;
+        padding: 40px 0;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+</style>
+
+<!-- Page Title -->
+<div class="page-heading">My Bookings</div>
+
+<!-- Booking Section -->
+<div class="bookings-wrapper">
+    @if (!Model.Any())
+    {
+        <div class="no-bookings">
+            You have not made any bookings yet.
+        </div>
+    }
+    else
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Full Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Event Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model)
+                {
+                    <tr>
+                        <td>@booking.EventName</td>
+                        <td>@booking.FullName</td>
+                        <td>@booking.Contact</td>
+                        <td>@booking.Email</td>
+                        <td>@booking.EventDate.ToString("dd MMM yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

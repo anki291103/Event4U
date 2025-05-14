@@ -1,0 +1,35 @@
+﻿@model Event4U.Models.User
+
+@{
+    ViewBag.Title = Model.UserId == 0 ? "Add User" : "Edit User";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm(
+    Model.UserId == 0 ? "AddUser" : "EditUser", // Dynamic action
+    "Admin",
+    FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.UserId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save</button>
+    <a href="@Url.Action("Users", "Admin")" class="btn btn-secondary mt-3 ms-2">Back</a>
+}

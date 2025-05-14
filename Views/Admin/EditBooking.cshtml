@@ -1,0 +1,46 @@
+﻿@model Event4U.Models.Booking
+@{
+    ViewBag.Title = "Edit Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Booking</h2>
+
+@using (Html.BeginForm("EditBooking", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.BookingId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId)
+        @Html.DropDownList("UserId", ViewBag.Users as SelectList, "Select User", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EventName)
+        @Html.TextBoxFor(model => model.EventName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FullName)
+        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Contact)
+        @Html.TextBoxFor(model => model.Contact, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EventDate)
+        @Html.TextBoxFor(model => model.EventDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="@Url.Action("Bookings", "Admin")" class="btn btn-secondary">Cancel</a>
+}

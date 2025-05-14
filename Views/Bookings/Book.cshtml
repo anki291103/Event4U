@@ -1,0 +1,182 @@
+﻿@model Event4U.Models.Booking
+@{
+    ViewData["Title"] = "Book Your Event - Event4U";
+}
+
+
+<style>
+    /* Background Styling */
+    body {
+        background: url('/Images/bookingsbg.jpg') no-repeat center center fixed;
+        background-size: cover;
+        position: relative;
+    }
+
+    /* Blurred Overlay */
+    .background-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6); /* Dark Transparent Layer */
+        backdrop-filter: blur(8px);
+        z-index: -1;
+    }
+
+    /* Booking Form Container */
+    .booking-container {
+        width: 60%;
+        max-width: 500px; /* keeps it from stretching too wide */
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 10px;
+        margin: 100px auto;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    /* Input Fields */
+    .form-group {
+        text-align: left;
+        margin-bottom: 25px; /* more breathing room */
+    }
+
+        .form-group label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+    .form-control {
+        width: 100%; /* or 130% depending on your preference */
+        max-width: 450px; /* ✅ Makes textbox take full width of container */
+        padding: 14px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+        background: #007BFF;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+    /* Pop-up Message */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
+
+        .popup p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .popup button {
+            background: #007BFF;
+            color: white;
+            font-size: 1rem;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+            .popup button:hover {
+                background: #0056b3;
+            }
+</style>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<!-- Blurred Background -->
+<div class="background-overlay"></div>
+
+<!-- Booking Form -->
+<div class="booking-container">
+    <h1>Book Your Event</h1>
+
+    @using (Html.BeginForm("Book", "Bookings", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.FullName)
+            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(m => m.FullName)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Contact)
+            @Html.TextBoxFor(m => m.Contact, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(m => m.Contact)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required", type = "email" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.EventName)
+            @Html.DropDownListFor(m => m.EventName, new SelectList(new[] {
+                "Wedding", "Corporate", "Concert", "Party"
+            }), "-- Select an Event --", new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(m => m.EventName)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.EventDate)
+            @Html.TextBoxFor(m => m.EventDate, "{0:yyyy-MM-dd}", new { @class = "form-control", required = "required", type = "date" })
+            @Html.ValidationMessageFor(m => m.EventDate, "", new { @class = "text-danger" })
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+    }
+</div>
+
+
+@section Scripts {
+    @Html.Partial("_ValidationScriptsPartial")
+}
+
+
