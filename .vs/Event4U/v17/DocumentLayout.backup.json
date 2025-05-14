@@ -158,7 +158,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -167,6 +167,63 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UpcomingEvents.cshtml",
+              "DocumentMoniker": "D:\\Ankita Jha\\3rd sem\\Event4U\\Views\\Home\\UpcomingEvents.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\UpcomingEvents.cshtml",
+              "ToolTip": "D:\\Ankita Jha\\3rd sem\\Event4U\\Views\\Home\\UpcomingEvents.cshtml",
+              "RelativeToolTip": "Views\\Home\\UpcomingEvents.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-06T15:32:34.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "dbo.Offers.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Offers.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Offers.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-06T15:00:01.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "dbo.Payments.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Payments.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Payments.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-06T12:58:25.555Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "dbo.Bookings.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Bookings.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Bookings.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-06T12:58:29.614Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "dbo.Users.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Users.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Users.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-06T10:56:32.333Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -203,19 +260,6 @@
               "ViewState": "AgIAAAUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-08T05:35:52.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UpcomingEvents.cshtml",
-              "DocumentMoniker": "D:\\Ankita Jha\\3rd sem\\Event4U\\Views\\Home\\UpcomingEvents.cshtml",
-              "RelativeDocumentMoniker": "Views\\Home\\UpcomingEvents.cshtml",
-              "ToolTip": "D:\\Ankita Jha\\3rd sem\\Event4U\\Views\\Home\\UpcomingEvents.cshtml",
-              "RelativeToolTip": "Views\\Home\\UpcomingEvents.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-06T15:32:34.236Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -484,15 +528,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "dbo.Offers.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Offers.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Offers.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-04-06T15:00:01.081Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 27,
               "Title": "202504061432397_AddOffersTable.cs",
               "DocumentMoniker": "D:\\Ankita Jha\\3rd sem\\Event4U\\Migrations\\202504061432397_AddOffersTable.cs",
@@ -526,33 +561,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-04-06T12:50:41.56Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "dbo.Payments.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Payments.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Payments.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-04-06T12:58:25.555Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "dbo.Bookings.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Bookings.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Bookings.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-04-06T12:58:29.614Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "dbo.Users.sql",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Users.sql",
-              "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/Event4UDB/True/SqlTable/dbo.Users.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-04-06T10:56:32.333Z"
             },
             {
               "$type": "Document",
